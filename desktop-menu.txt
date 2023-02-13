@@ -1,0 +1,211 @@
+<desktop-navigation>
+  <ul class="header__linklist list--unstyled {% unless bottom_navigation %}hidden-pocket hidden-lap{% endunless %}" role="list">
+    {%- for block in section.blocks -%}
+      {%- case block.type -%}
+        {%- when 'menu' -%}
+          <li class="header__linklist-item">
+            <a class="header__linklist-link link--animated {% if block.settings.show_mega_menu %}dropdown{% endif %}" href="{{ block.settings.menu_item_link }}">
+              {{ block.settings.menu_item_text }} 
+            </a>
+            {% if block.settings.show_mega_menu %}
+              <div class="dropdown__menu">
+                <div class="container">
+                  <div class="row">
+                    {%- assign menu_1 = block.settings.menu_1.links -%}
+                    {% if block.settings.menu_1_heading != blank or menu_1 != blank %}
+                      <div class="col">
+                        <p class="heading--small">{{ block.settings.menu_1_heading }}</p>
+                        <ul class="header__linklist-dropdown list--unstyled">
+                          {%- for link in menu_1 -%}
+                            <li class="header__linklist-item-drop">
+                              <a href="{{ link.url }}" class="header__linklist-link link--animated">
+                                {{ link.title }}
+                              </a>
+                            </li>
+                          {%- endfor -%}
+                        </ul>
+                      </div>
+                    {% endif %}
+
+                    {%- assign menu_2 = block.settings.menu_2.links -%}
+                    {% if block.settings.menu_2_heading != blank or menu_2 != blank %}
+                      <div class="col">
+                        <p class="heading--small">{{ block.settings.menu_2_heading }}</p>
+                        <ul class="header__linklist-dropdown list--unstyled">
+                          {%- for link in menu_2 -%}
+                            <li class="header__linklist-item-drop">
+                              <a href="{{ link.url }}" class="header__linklist-link link--animated">
+                                {{ link.title }}
+                              </a>
+                            </li>
+                          {%- endfor -%}
+                        </ul>
+                      </div>
+                    {% endif %}
+
+                    {%- assign menu_3 = block.settings.menu_3.links -%}
+                    {% if block.settings.menu_3_heading != blank or menu_3 != blank %}
+                      <div class="col">
+                        <p class="heading--small">{{ block.settings.menu_3_heading }}</p>
+                        <ul class="header__linklist-dropdown list--unstyled">
+                          {%- for link in menu_3 -%}
+                            <li class="header__linklist-item-drop">
+                              <a href="{{ link.url }}" class="header__linklist-link link--animated">
+                                {{ link.title }}
+                              </a>
+                            </li>
+                          {%- endfor -%}
+                        </ul>
+                      </div>
+                    {% endif %}
+
+                    {%- assign featured_menu = block.settings.featured_menu.links -%}
+                    {% if block.settings.featured_menu_heading != blank or featured_menu != blank %}
+                      <div class="col featured">
+                        <p class="heading--small">{{ block.settings.featured_menu_heading }}</p>
+                        <ul class="header__linklist-dropdown list--unstyled">
+                          {%- for link in featured_menu -%}
+                            <li class="header__linklist-item-drop">
+                              <a href="{{ link.url }}" class="header__linklist-link link--animated">
+                                {{ link.title }}
+                              </a>
+                            </li>
+                          {%- endfor -%}
+                        </ul>
+                      </div>
+                    {% endif %}
+
+                    {%- assign image_1 = block.settings.image_1 -%}
+                    {% if image_1 != blank or block.settings.image_1_caption != blank or block.settings.link_1_text != blank or block.settings.link_2_text != blank %}
+                      <div class="col image">
+
+                        {% if image_1 != blank %}
+                          <div class="img-wrap">
+                            <img src="{{ image_1 | img_url: '142x109', crop: 'center' }}" alt="{{ image_1.alt }}">
+                            {% if block.settings.image_1_caption != blank %}
+                              <p class="caption">{{ block.settings.image_1_caption }}</p>
+                            {% endif %}
+                          </div>
+                        {% endif %}
+
+                        {% if block.settings.link_1_text != blank and block.settings.link_1 != blank %}
+                          <div class="link-wrap">
+                            <a href="{{ block.settings.link_1 }}" class="link">{{ block.settings.link_1_text }}</a>
+                          </div>
+                        {% endif %}
+                        {% if block.settings.link_2_text != blank and block.settings.link_2 != blank %}
+                          <div class="link-wrap">
+                            <a href="{{ block.settings.link_2 }}" class="link">{{ block.settings.link_2_text }}</a>
+                          </div>
+                        {% endif %}
+
+                      </div>
+                    {% endif %}
+
+                    {%- assign image_2 = block.settings.image_2 -%}
+                    {% if image_2 != blank or block.settings.image_2_caption != blank or block.settings.link_3_text != blank or block.settings.link_4_text != blank %}
+                      <div class="col image">
+
+                        {% if image_2 != blank %}
+                          <div class="img-wrap">
+                            <img src="{{ image_2 | img_url: '142x109', crop: 'center' }}" alt="{{ image_2.alt }}">
+                            {% if block.settings.image_2_caption != blank %}
+                              <p class="caption">{{ block.settings.image_2_caption }}</p>
+                            {% endif %}
+                          </div>
+                        {% endif %}
+
+                        {% if block.settings.link_3_text != blank and block.settings.link_3 != blank %}
+                          <div class="link-wrap">
+                            <a href="{{ block.settings.link_3 }}" class="link">{{ block.settings.link_3_text }}</a>
+                          </div>
+                        {% endif %}
+                        {% if block.settings.link_4_text != blank and block.settings.link_4 != blank %}
+                          <div class="link-wrap">
+                            <a href="{{ block.settings.link_4 }}" class="link">{{ block.settings.link_4_text }}</a>
+                          </div>
+                        {% endif %}
+
+                      </div>
+                    {% endif %}
+
+                  </div>
+                </div>
+              </div>
+            {% endif %}
+          </li>
+
+          {%- when 'discover' -%}
+            <li class="header__linklist-item last">
+              <a href="#" class="header__linklist-link link--animated dropdown">Discover SpartanPOS</a>
+
+              {% if block.settings.show_mega_menu %}
+                <div class="dropdown__menu">
+                  <div class="container">
+                    <div class="row">
+
+                      {%- assign menu = block.settings.menu.links -%}
+                      {% if menu != blank %}
+                        <div class="col">
+                          <ul class="header__linklist-dropdown list--unstyled">
+                            {%- for link in menu -%}
+                              <li class="header__linklist-item-drop">
+                                <a href="{{ link.url }}" class="header__linklist-link link--animated">
+                                  {{ link.title }}
+                                </a>
+                              </li>
+                            {%- endfor -%}
+                          </ul>
+                        </div>
+                      {% endif %}
+
+                      <div class="col social-links">
+                          <ul class="social-icons">
+                            {% if block.settings.insta != blank %}
+                              <li class="social-icon">
+                                <a href="{{ block.settings.insta }}" target="_blank">
+                                  {% render 'icon-insta' %}
+                                </a>
+                              </li>
+                            {% endif %}
+                            {% if block.settings.facebook != blank %}
+                              <li class="social-icon">
+                                <a href="{{ block.settings.facebook }}" target="_blank">
+                                  {% render 'icon-facebook' %}
+                                </a>
+                              </li>
+                            {% endif %}
+                            {% if block.settings.tiktok != blank %}
+                              <li class="social-icon">
+                                <a href="{{ block.settings.tiktok }}" target="_blank">
+                                  {% render 'icon-tiktok' %}
+                                </a>
+                              </li>
+                            {% endif %}
+                            {% if block.settings.youtube != blank %}
+                              <li class="social-icon">
+                                <a href="{{ block.settings.youtube }}" target="_blank">
+                                  {% render 'icon-youtube' %}
+                                </a>
+                              </li>
+                            {% endif %}
+                            {% if block.settings.twitter != blank %}
+                              <li class="social-icon">
+                                <a href="{{ block.settings.twitter }}" target="_blank">
+                                  {% render 'icon-twitter' %}
+                                </a>
+                              </li>
+                            {% endif %}
+                          </ul>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+              {% endif %}
+            </li>
+
+      {%- endcase -%}
+    {%- endfor -%}
+  </ul>
+</desktop-navigation>
